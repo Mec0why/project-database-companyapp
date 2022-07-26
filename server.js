@@ -46,6 +46,10 @@ mongoClient.connect(
       app.use('/api', departmentsRoutes);
       app.use('/api', productsRoutes);
 
+      db.collection('departments').deleteOne({ name: 'Management' }, (err) => {
+        if (err) console.log(err);
+      });
+
       app.use((req, res) => {
         res.status(404).send({ message: 'Not found...' });
       });
