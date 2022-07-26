@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./../db');
 const ObjectId = require('mongodb').ObjectId;
 
 router.get('/departments', (req, res) => {
@@ -48,9 +47,8 @@ router.put('/departments/:id', (req, res) => {
     .updateOne(
       { _id: ObjectId(req.params.id) },
       { $set: { name: name } },
-      (err, data) => {
+      (err) => {
         if (err) res.status(500).json({ message: err });
-        else if (!data) res.status(404).json({ message: 'Not found' });
         else res.json({ message: 'OK' });
       }
     );
