@@ -16,15 +16,25 @@ mongoClient.connect(
       console.log('Successfully connected to the database');
       const db = client.db('companyDB');
 
-      db.collection('employees').find({ department: 'IT' }).toArray((err, data) => {
-        if(!err) {
-          console.log(data)
-        }
+      db.collection('employees')
+        .find({ department: 'IT' })
+        .toArray((err, data) => {
+          if (!err) {
+            console.log(data);
+          }
+        });
+
+      db.collection('departments').insertOne({ name: 'Management' }, (err) => {
+        if (err) console.log('err');
       });
 
-      db.collection('departments').insertOne({ name: 'Management' }, err => {
-        if(err) console.log('err');
-      });
+      db.collection('employees').updateOne(
+        { department: 'IT' },
+        { $set: { salary: 6000 } },
+        (err) => {
+          if (err) console.log(err);
+        }
+      );
 
       const app = express();
 
