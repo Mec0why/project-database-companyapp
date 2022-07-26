@@ -14,6 +14,16 @@ mongoClient.connect(
       console.log(err);
     } else {
       console.log('Successfully connected to the database');
+      const db = client.db('companyDB');
+
+      db.collection('employees').find({ department: 'IT' }, (err, data) => {
+        if(!err) {
+          data.each((error, employee) => {
+            console.log(employee);
+          })
+        }
+      });
+
       const app = express();
 
       app.use(cors());
