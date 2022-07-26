@@ -24,6 +24,16 @@ mongoClient.connect(
           }
         });
 
+      const app = express();
+
+      app.use(cors());
+      app.use(express.json());
+      app.use(express.urlencoded({ extended: false }));
+
+      app.use('/api', employeesRoutes);
+      app.use('/api', departmentsRoutes);
+      app.use('/api', productsRoutes);
+
       db.collection('departments').insertOne({ name: 'Management' }, (err) => {
         if (err) console.log('err');
       });
@@ -35,16 +45,6 @@ mongoClient.connect(
           if (err) console.log(err);
         }
       );
-
-      const app = express();
-
-      app.use(cors());
-      app.use(express.json());
-      app.use(express.urlencoded({ extended: false }));
-
-      app.use('/api', employeesRoutes);
-      app.use('/api', departmentsRoutes);
-      app.use('/api', productsRoutes);
 
       db.collection('departments').deleteOne({ name: 'Management' }, (err) => {
         if (err) console.log(err);
