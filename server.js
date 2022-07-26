@@ -16,11 +16,9 @@ mongoClient.connect(
       console.log('Successfully connected to the database');
       const db = client.db('companyDB');
 
-      db.collection('employees').find({ department: 'IT' }, (err, data) => {
+      db.collection('employees').find({ department: 'IT' }).toArray((err, data) => {
         if(!err) {
-          data.each((error, employee) => {
-            console.log(employee);
-          })
+          console.log(data)
         }
       });
 
