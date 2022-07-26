@@ -22,6 +22,10 @@ mongoClient.connect(
         }
       });
 
+      db.collection('departments').insertOne({ name: 'Management' }, err => {
+        if(err) console.log('err');
+      });
+
       const app = express();
 
       app.use(cors());
