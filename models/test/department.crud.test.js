@@ -12,7 +12,16 @@ describe('Department', () => {
     } catch (err) {
       console.error(err);
     }
+    describe('Reading data', () => {
+      before(async () => {
+        const testDepOne = new Department({ name: 'Department #1' });
+        await testDepOne.save();
 
+        const testDepTwo = new Department({ name: 'Department #2' });
+        await testDepTwo.save();
+      });
 
+      it('should return all the data with "find" method', () => {});
+    });
   });
 });
