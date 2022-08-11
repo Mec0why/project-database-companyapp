@@ -2,8 +2,16 @@ const Employee = require('../employee.model');
 const expect = require('chai').expect;
 
 describe('Employee', () => {
-  
-  after(() => {
-    mongoose.models = {};
+  before(async () => {
+    try {
+      await mongoose.connect('mongodb://localhost:27017/companyDBtest', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+
+    
   });
 });
