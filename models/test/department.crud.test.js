@@ -20,8 +20,12 @@ describe('Department', () => {
         const testDepTwo = new Department({ name: 'Department #2' });
         await testDepTwo.save();
       });
-
-      it('should return all the data with "find" method', () => {});
+      it('should return all the data with "find" method', () => {
+        const departments = await Department.find();
+        const expectedLength = 2;
+        expect(departments.length).to.be.equal(expectedLength);
+      
+      });
     });
   });
 });
