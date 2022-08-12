@@ -47,10 +47,20 @@ describe('Department', () => {
     });
   });
   describe('Updating data', () => {
+    beforeEach(async () => {
+      const testDepOne = new Department({ name: 'Department #1' });
+      await testDepOne.save();
+
+      const testDepTwo = new Department({ name: 'Department #2' });
+      await testDepTwo.save();
+    });
     it('should properly update one document with "updateOne" method', async () => {});
 
     it('should properly update one document with "save" method', async () => {});
 
     it('should properly update multiple documents with "updateMany" method', async () => {});
+    afterEach(async () => {
+      await Department.deleteMany();
+    });
   });
 });
