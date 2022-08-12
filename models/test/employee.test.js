@@ -41,9 +41,16 @@ describe('Employee', () => {
 
   it('should not throw an error if attributes are correct', () => {
     const cases = [
-      { firstName: 'John', lastName: 'Doe', department: 'Management' },
-      { firstName: 'Mark', lastName: 'Bernt', department: 'Finance' },
-      { firstName: 'July', lastName: 'May', department: 'IT' },
+      {
+        firstName: 'John',
+        lastName: 'Doe',
+        department: '62dd9723a3569272a44c2812',
+      },
+      {
+        firstName: 'Mark',
+        lastName: 'Bernt',
+        department: '62dd9734a3569272a44c2813',
+      },
     ];
 
     for (let test of cases) {
