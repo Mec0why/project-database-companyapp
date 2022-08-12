@@ -98,11 +98,30 @@ describe('Department', () => {
       await testDepTwo.save();
     });
 
-    it('should properly remove one document with "deleteOne" method', async () => {});
+    it('should properly remove one document with "deleteOne" method', async () => {
+      await Department.deleteOne({ name: 'Department #1' });
+      const removeDepartment = await Department.findOne({
+        name: 'Department #1',
+      });
+      expect(removeDepartment).to.be.null;
+    });
 
-    it('should properly remove one document with "remove" method', async () => {});
+    it('should properly remove one document with "remove" method', async () => {
+      const department = await Department.findOne({ name: 'Department #1' });
+      await department.remove();
+      const removedDepartment = await Department.findOne({
+        name: 'Department #1',
+      });
+      expect(removedDepartment).to.be.null;
+    });
 
-    it('should properly remove multiple documents with "deleteMany" method', async () => {});
+    it('should properly remove multiple documents with "deleteMany" method', async () => {
+      await Department.deleteMany();
+
+      const removedDepartment = await Department.find();
+
+      expect(removedDepartment.length).to.be.equal(0);
+    });
 
     afterEach(async () => {
       await Department.deleteMany();
