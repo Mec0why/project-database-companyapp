@@ -45,6 +45,5 @@ describe('Department', () => {
       });
       expect(savedDepartment).to.not.be.null;
     });
-    expect(savedDepartment).to.not.be.null;
   });
 });
