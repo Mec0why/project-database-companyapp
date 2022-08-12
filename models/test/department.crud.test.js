@@ -90,14 +90,22 @@ describe('Department', () => {
   });
 
   describe('Removing data', () => {
+    beforeEach(async () => {
+      const testDepOne = new Department({ name: 'Department #1' });
+      await testDepOne.save();
+
+      const testDepTwo = new Department({ name: 'Department #2' });
+      await testDepTwo.save();
+    });
+
     it('should properly remove one document with "deleteOne" method', async () => {});
 
     it('should properly remove one document with "remove" method', async () => {});
 
     it('should properly remove multiple documents with "deleteMany" method', async () => {});
-  });
 
-  afterEach(async () => {
-    await Department.deleteMany();
+    afterEach(async () => {
+      await Department.deleteMany();
+    });
   });
 });
