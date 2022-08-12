@@ -46,4 +46,11 @@ describe('Department', () => {
       await Department.deleteMany();
     });
   });
+  describe('Updating data', () => {
+    it('should properly update one document with "updateOne" method', async () => {});
+
+    it('should properly update one document with "save" method', async () => {});
+
+    it('should properly update multiple documents with "updateMany" method', async () => {});
+  });
 });
