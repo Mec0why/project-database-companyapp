@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../../server.js');
+const server = require('../../../server');
 const Department = require('../../models/department.model');
 
 chai.use(chaiHttp);
@@ -23,7 +23,12 @@ describe('GET /api/departments', () => {
     await testDepTwo.save();
   });
 
-  it('/ should return all departments', () => {});
+  it('/ should return all departments', async () => {
+    const res = await request(server).get('/api/departments');
+    expect(res.status).to.be.equal(200);
+    expect(res.body).to.be.an('array');
+    expect(res.body.length).to.be.equal(2);
+  });
 
   it('/:id should return one department by :id ', () => {});
 
