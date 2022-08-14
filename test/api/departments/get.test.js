@@ -30,9 +30,21 @@ describe('GET /api/departments', () => {
     expect(res.body.length).to.be.equal(2);
   });
 
-  it('/:id should return one department by :id ', () => {});
+  it('/:id should return one department by :id ', async () => {
+    const res = await request(server).get(
+      '/api/departments/5d9f1159f81ce8d1ef2bee48'
+    );
+    expect(res.status).to.be.equal(200);
+    expect(res.body).to.be.an('object');
+    expect(res.body).to.not.to.be.null;
+  });
 
-  it('/random should return one random department', () => {});
+  it('/random should return one random department', async () => {
+    const res = await request(server).get('/api/departments/random');
+    expect(res.status).to.be.equal(200);
+    expect(res.body).to.be.an('object');
+    expect(res.body).to.not.to.be.null;
+  });
   after(async () => {
     await Department.deleteMany();
   });

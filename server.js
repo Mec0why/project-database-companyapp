@@ -31,12 +31,16 @@ mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
-  console.log('Connected to the database');
+  if (NODE_ENV !== 'test') {
+    console.log('Connected to the database');
+  }
 });
 db.on('error', (err) => console.log('Error ' + err));
 
 const server = app.listen('8000', () => {
-  console.log('Server is running on port: 8000');
+  if (NODE_ENV !== 'test') {
+    console.log('Server is running on port: 8000');
+  }
 });
 
 module.exports = server;
